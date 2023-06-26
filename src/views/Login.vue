@@ -4,23 +4,23 @@ import { useUserStore } from "../stores/user";
 
 const userStore = useUserStore();
 
-const email = ref("esteban@test.com");
-const password = ref("123123");
+const email = ref();
+const password = ref();
 
 const handleSubmit = async () => {
-	if (!email.value || password.value.length < 6) {
-		return alert("Llena los campos");
-	}
-	await userStore.loginUser(email.value, password.value);
+  if (!email.value || password.value.length < 6) {
+    return alert("Llena los campos");
+  }
+  await userStore.loginUser(email.value, password.value);
 };
 </script>
 <template>
-	<div>
-		<h1>Login</h1>
-		<form @submit.prevent="handleSubmit">
-			<input type="email" placeholder="Ingrese email" v-model.trim="email" />
-			<input type="password" placeholder="Ingrese contraseña" v-model.trim="password" />
-			<button type="submit" :disabled="userStore.loadingUser">Acceder</button>
-		</form>
-	</div>
+  <div>
+    <h1>Login</h1>
+    <form @submit.prevent="handleSubmit">
+      <input type="email" placeholder="Ingrese email" v-model.trim="email" />
+      <input type="password" placeholder="Ingrese contraseña" v-model.trim="password" />
+      <button type="submit" :disabled="userStore.loadingUser">Acceder</button>
+    </form>
+  </div>
 </template>
